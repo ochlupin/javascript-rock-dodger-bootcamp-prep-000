@@ -78,6 +78,15 @@ function createRock(x) {
    * seems like a good pace.)
    */
   function moveRock() {
+    rock.style.top = `${top+=2}px`;
+    if (checkCollision(rock)){
+      return endGame();
+    }
+    if(top<400){
+      window.requestAnimationFrame(moveRock)
+    } else{
+      rock.remove()
+    }
     // implement me!
     // (use the comments below to guide you!)
     /**
@@ -89,17 +98,14 @@ function createRock(x) {
      * Otherwise, if the rock hasn't reached the bottom of
      * the GAME, we want to move it again.
      */
-
-    /**
-     * But if the rock *has* reached the bottom of the GAME,
-     * we should remove the rock from the DOM
-     */
   }
+
 
   // We should kick of the animation of the rock around here
 
   // Add the rock to ROCKS so that we can remove all rocks
   // when there's a collision
+  window.requestAnimationFrame(moveRock)
   ROCKS.push(rock)
 
   // Finally, return the rock element you've created
@@ -113,7 +119,16 @@ function createRock(x) {
  * Finally, alert "YOU LOSE!" to the player.
  */
 function endGame() {
+  clearInterval(gameInterval)
+  ROCKS.forEach(function(rock){
+    rock.remove()
+  });
+  window.removeEventListener('keydown',moveDodger);
+  var loss =["Try Again?","YOU LOSE!","Practice Makes Perfect","Game Over"]
+  START.innerHTML=loss[Math.floor(Math.random()*4)]
+  START.style.display='block'
 }
+DODGER.remove();
 
 function moveDodger(e) {
   // implement me!

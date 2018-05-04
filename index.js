@@ -161,8 +161,8 @@ function step(){
     dodger.style.left=`${left-=4}px`
     window.requestAnimationFrame(step)
   }
-  window.requestAnimationFrame(step)
 }
+window.requestAnimationFrame(step)
   // implement me!
   /**
    * This function should move DODGER to the left
@@ -171,12 +171,14 @@ function step(){
 }
 
 function moveDodgerRight() {
-  window.requestAnimationFrame.(function(){
-    let left=positionToInteger(DODGER.style.left)
-    if(left<360){
-      DODGER.style.left=`${left+4}px`
-    }
-  })
+var right = parseInt(dodger.style.left.replace("px",""));
+function step(){
+  if(right<360){
+    dodger.style.left=`${right+=4}px`
+    window.requestAnimationFrame(step)
+  }
+}
+window.requestAnimationFrame(step)
   // implement me!
   /**
    * This function should move DODGER to the right

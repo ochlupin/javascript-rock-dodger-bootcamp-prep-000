@@ -127,10 +127,23 @@ function endGame() {
   var loss =["Try Again?","YOU LOSE!","Practice Makes Perfect","Game Over"]
   START.innerHTML=loss[Math.floor(Math.random()*4)]
   START.style.display='block'
+
+  DODGER.remove();
+  return alert('You Lose!')
 }
-DODGER.remove();
+
 
 function moveDodger(e) {
+  if (e.which===LEFT_ARROW){
+    e.preventDefault();
+    e.stopPropagation();
+    moveDodgerLeft();
+  }
+  if(e.which===RIGHT_ARROW){
+    e.preventDefault();
+    e.stopPropagation();
+    moveDodgerRight();
+  }
   // implement me!
   /**
    * This function should call `moveDodgerLeft()`
